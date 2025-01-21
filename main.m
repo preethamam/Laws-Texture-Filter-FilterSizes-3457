@@ -8,7 +8,7 @@ Start = tic;
 %% Inputs
 image = imread("images/texture_02.jpg");
 filterType = 4;                     % Law's filter to use (3, 4, 5, or 7)
-normtype = 'L1';                    % Matrix norm 
+normtype = 'L2';                    % Matrix norm: 'L1', 'L2', 'Inf', 'fro'
 illumWindowsize = 3;                % Illumination smoothing window size
 energyWindowsize = 7;               % Energy window size
 
