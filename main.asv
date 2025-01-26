@@ -15,7 +15,7 @@ kClusters = 5;                     % K-means clusters number
 
 %% Process imagenusing the Law's texture filter
 lawstic = tic;
-[featureVector, tensorOutput, energyOutput, segMap]  = lawsFilter(image, filterType, normtype, illumWindowsize,...
+[featureVector, tensorOutput, energyOutput,]  = lawsFilter(image, filterType, normtype, illumWindowsize,...
                                                           energyWindowsize, kClusters);
 lawsruntime = toc(lawstic);
 fprintf('Law''s texture filter execution time: %.4f seconds\n', lawsruntime)
@@ -30,10 +30,8 @@ montPlot2 = montage(mat2gray(energyOutput));
 exportgraphics(gca, 'assets/energyplot.png')
 
 figure;
-t = tiledlayout(1,2,TileSpacing="tight",Padding="compact");
-nexttile; imshow(image); title('Original')
-nexttile; imshow(label2rgb(segMap)); title('Segmentation Map')
-exportgraphics(gcf, 'assets/segmap.png')
+subplot(1,2,1); imshow(image); title('Original')
+subplot(1,2,2); imshow(image); title('Original')
 
 %% End parameters
 %--------------------------------------------------------------------------

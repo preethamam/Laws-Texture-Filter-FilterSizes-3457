@@ -1,5 +1,5 @@
-function [featureVector, lawsTensorOutput, energyOutput]  = lawsFilter(image, filterType, ...
-                            normtype, illumWindowSize, energyWindowSize)
+function [featureVector, lawsTensorOutput, energyOutput, segMap]  = lawsFilter(image, filterType, ...
+                            normtype, illumWindowSize, energyWindowSize, kClusters)
     % LAWSFILTER Applies Law's texture energy measures to an image.
     %
     %   [featureVector, lawsTensorOutput, energyOutput] = LAWSFILTER(image, filterType, ...
@@ -13,11 +13,13 @@ function [featureVector, lawsTensorOutput, energyOutput]  = lawsFilter(image, fi
     %       normtype - Type of norm to use for feature vector ('L1', 'L2', 'infinity', 'frobenius').
     %       illumWindowSize - Size of the illumination window.
     %       energyWindowSize - Size of the energy window.
+    %       kClusters -  K-means clusters number
     %
     %   Outputs:
     %       featureVector - Feature vector containing texture energy measures.
     %       lawsTensorOutput - Tensor output of Law's filters.
     %       energyOutput - Energy output of Law's filters.
+    %       segMap - Segmentation map
     %
     %   Example:
     %       img = imread('example.jpg');
@@ -164,6 +166,20 @@ function [featureVector, lawsTensorOutput, energyOutput]  = lawsFilter(image, fi
 
     % Normalize the feature vector
     featureVector = featureVector /norm(featureVector);
+
+    % Segmentation map and clustering
+    segMaptic = tic;
+    [N,M,L] = size(energyOutput);
+    energyFeatureVec = reshape(energyOutput,[N*M, L]);
+    
+    % Get clusters indices/classes
+    idx = kmeans(energyFeatureVec, kClusters);
+    
+    % Reshape to segmentation map
+    segMap = reshape(idx, [N,M]);
+
+    segMapruntime = toc(segMaptic);
+    fprintf('Segmentation map execution time: %.4f seconds\n', segMapruntime)
 end
 
 
