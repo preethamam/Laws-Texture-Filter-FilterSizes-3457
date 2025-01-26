@@ -1,0 +1,11 @@
+# Ignore Mac system files
+.DS_store
+
+
+# Ignore all files
+*.txt
+*.mat
+*.MAT
+*.pdf
+*.PDF
+*.asv
