@@ -15,7 +15,8 @@ Texture segmentation and recognition is an important task in image processing. I
 
 # Requirements
 MATLAB <br />
-MATLAB Image Processing Toolbox <br />
+Image Processing Toolbox <br />
+Statistics and Machine Learning Toolbox
 
 # Feedback
 Please rate and provide feedback for the further improvements.
