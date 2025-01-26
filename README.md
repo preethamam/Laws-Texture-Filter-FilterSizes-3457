@@ -10,6 +10,8 @@ Texture segmentation and recognition is an important task in image processing. I
 | ![pano_full](assets/lawsplot.png) |
 | Energy maps | 
 | ![pano_bbox](assets/energyplot.png) |
+| Segmentation map | 
+| ![pano_bbox](assets/segmap.png) |
 
 # Requirements
 MATLAB <br />
